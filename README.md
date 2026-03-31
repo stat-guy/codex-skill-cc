@@ -1,40 +1,23 @@
 # codex-skill-cc
 
-A Claude Code skill that invokes **Codex (GPT-5.4 agentic CLI)** as an autonomous collaborator. Codex can use its own skills (`$skill-name` syntax), spawn up to 8 parallel sub-agents, and work through multi-turn tasks before returning results.
+Run OpenAI's Codex (GPT-5.4) directly from Claude Code — as a collaborator, not a competitor.
 
-## Features
+## Why
 
-- **Sticky sessions** — resume where you left off across `/codex` invocations
-- **Intent routing** — automatically routes to run, resume, or status agents
-- **Codex skill passthrough** — invoke Codex's own skills (e.g. `$polymarket`, `$ezfile`)
-- **Multi-agent** — Codex fans out to up to 8 sub-agents with depth 16
+Claude Code is great at orchestrating work. Codex is great at autonomous multi-step execution. This skill bridges them: you stay in Claude Code's interface while Codex handles the heavy lifting behind the scenes — research, builds, analysis, multi-turn tasks — and reports back when it's done.
 
-## Usage
+No tab-switching. No copy-pasting between terminals. One prompt, two engines.
 
-Install the skill into your Claude Code skills directory:
+## What it does
 
-```
-~/.claude/skills/codex/
-```
+- **One command** — `/codex <task>` dispatches work to Codex and surfaces results in your Claude Code session
+- **Sticky sessions** — pick up where you left off; Codex remembers context across invocations
+- **Skill passthrough** — invoke Codex's own skills (`$polymarket`, `$ezfile`, etc.) without leaving Claude Code
+- **Multi-agent fan-out** — Codex automatically parallelizes across up to 8 sub-agents when the task calls for it
 
-Then invoke via:
+## Quick start
 
-```
-/codex <task>
-/codex $polymarket <query>
-/codex status
-/codex new <task>
-```
-
-## Structure
-
-```
-SKILL.md          — Main orchestrator / intent router
-agents/
-  run.md          — Launch a new Codex session
-  resume.md       — Continue an existing session
-  status.md       — Poll active run state
-```
+See [`CLAUDE.md`](./CLAUDE.md) for installation instructions — designed for Claude Code to walk you through setup.
 
 ## Author
 

@@ -4,9 +4,11 @@ Run OpenAI's Codex (GPT-5.4) directly from Claude Code — as a collaborator, no
 
 ## Why
 
-Claude Code is great at orchestrating work. Codex is great at autonomous multi-step execution. This skill bridges them: you stay in Claude Code's interface while Codex handles the heavy lifting behind the scenes — research, builds, analysis, multi-turn tasks — and reports back when it's done.
+Claude Code is a strong orchestrator. Codex is a strong autonomous executor — and it comes with up to 8 parallel sub-agents built in. This skill puts all of that at Claude Code's disposal.
 
-No tab-switching. No copy-pasting between terminals. One prompt, two engines.
+Once installed, Claude Code gains access to Codex's entire execution layer: its sub-agent pool, its skill system, its multi-turn memory. A single `/codex` call from your Claude Code session can fan out into 8 concurrent workers, each going 16 levels deep, and funnel the results back into your conversation. Claude Code doesn't just *call* Codex — it *commands* Codex's full infrastructure.
+
+No tab-switching. No copy-pasting between terminals. One prompt, two engines, and a pool of sub-agents you didn't have before.
 
 ## What it does
 
@@ -15,17 +17,20 @@ No tab-switching. No copy-pasting between terminals. One prompt, two engines.
 - **Skill passthrough** — invoke Codex's own skills (`$polymarket`, `$ezfile`, etc.) without leaving Claude Code
 - **Multi-agent fan-out** — Codex automatically parallelizes across up to 8 sub-agents when the task calls for it
 
-## Leveraging Codex sub-agents from Claude Code
+## Codex's sub-agents are now Claude Code's sub-agents
 
-When you send a task to Codex via `/codex`, you're not just calling a single model — Codex can internally spin up **up to 8 parallel sub-agents** with a recursion depth of 16. That means a single `/codex` call from Claude Code can fan out into a small army of workers.
+Without this skill, Claude Code works alone. With it, Claude Code has a bench.
 
-You don't need to manage this. Codex decides when to parallelize based on the task. Ask it to "research 5 competitors and compare their pricing" and it may spawn a sub-agent per competitor, run them concurrently, and merge the results before reporting back to your Claude Code session.
+When you send a task to Codex via `/codex`, Codex can internally spin up **up to 8 parallel sub-agents** with a recursion depth of 16. Those sub-agents are now effectively working *for* Claude Code. You describe what you need; Claude Code decides what to handle itself and what to ship to Codex; Codex's sub-agents do the work; results flow back into your session.
+
+You don't manage the parallelism. Codex decides when to fan out based on the task. Ask it to "research 5 competitors and compare their pricing" and it may spawn a sub-agent per competitor, run them concurrently, and merge into a single deliverable — all from one `/codex` call.
 
 This is especially powerful for:
 
 - **Broad research** — scanning multiple sources, APIs, or datasets simultaneously
 - **Code generation at scale** — building multiple modules or services in parallel
 - **Analysis pipelines** — running independent computations and synthesizing results
+- **Anything embarrassingly parallel** — if the subtasks don't depend on each other, Codex can run them all at once
 
 ### Planning hybrid workflows
 
